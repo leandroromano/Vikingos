@@ -18,6 +18,8 @@ class Vikingo {
 	method ascenderSocialmente(){
 		castaSocial.ascender(self)
 	}
+	
+	method gananciaKarl()
 }
 
 class Soldado inherits Vikingo{
@@ -35,11 +37,15 @@ class Soldado inherits Vikingo{
 	method tieneArmas(){
 		return cantArmas > 0
 	}
+	
+	override method gananciaKarl(){
+		cantArmas += 10
+	}
 }
 
 class Granjero inherits Vikingo{
-	var cantHijos
-	var cantHectareas
+	var property cantHijos
+	var property cantHectareas
 	
 	constructor(_castaSocial, _vidasCobradas, _monedas,_cantHijos, _cantHectareas) = super(_castaSocial, _vidasCobradas, _monedas){
 		cantHijos = _cantHijos
@@ -53,6 +59,11 @@ class Granjero inherits Vikingo{
 	method tieneArmas(){
 		return false
 	}
+	
+	override method gananciaKarl(){
+		cantHijos += 2
+		cantHectareas += 2
+	}
 }
 
 object jarl{
@@ -61,7 +72,8 @@ object jarl{
 	}
 	
 	method ascender(vikingo){
-		
+		vikingo.castaSocial(karl)
+		vikingo.gananciaKarl()
 	}
 }
 
@@ -81,6 +93,6 @@ object thrall{
 	}
 	
 	method ascender(vikingo){
-		
+	
 	}
 }
