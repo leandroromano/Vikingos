@@ -1,0 +1,30 @@
+import Expediciones.*
+import Vikingo.*
+import Ciudades.*
+
+describe "Aca van los test que pide el enunciado"{
+	
+	var rollo = new Soldado(karl, 15, 3)
+	var floki = new Granjero(jarl, 2, 3, 9 )
+	var expedicionOeste = new Expedicion()
+	var paris = new Capital(10,5)
+	var troya = new Aldea(26)
+	
+	fixture{
+		expedicionOeste.agregarCiudad(paris)
+		expedicionOeste.agregarCiudad(troya)
+	}
+	
+	test "Rollo intenta subir a la expedicion al Oeste y no lo deja "{
+		assert.throwsExceptionWithMessage("El vikingo no es productivo, por lo tanto no puede subir a la expedicion", {expedicionOeste.subirA(rollo)})
+	}
+	
+	test "Floki inenta subir a la expedicion al Oeste y si lo deja"{
+		expedicionOeste.subirA(floki)
+		assert.equals(#{floki},expedicionOeste.vikingos())
+	}
+	
+	test "La expedicion vale la pena"{
+		assert.that(expedicionOeste.valeLaPena())
+	}
+}
