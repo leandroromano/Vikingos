@@ -16,12 +16,26 @@ class Expedicion{
 		return ciudadesObjetivo.all({ciudad => ciudad.valeLaPena(self)})
 	}
 	
+	method realizarExpedicion(){
+		var botinTotal = ciudadesObjetivo.sum({ciudad => ciudad.botin(self)})
+		ciudadesObjetivo.forEach({ciudad => ciudad.serAtacada(self)})
+		self.repartirBotin(botinTotal/self.cantidadDeVikingos())
+	}
+	
+	method repartirBotin(botin){
+		vikingos.forEach({vikingo => vikingo.monedas(botin)})
+	}
+	
 	method cantidadDeVikingos(){
 		return vikingos.size()
 	}
 	
 	method agregarCiudad(ciudad){
 		ciudadesObjetivo.add(ciudad)
+	}
+	
+	method agregarVikingo(vikingo){
+		vikingos.add(vikingo)
 	}
 }
 

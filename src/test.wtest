@@ -4,8 +4,8 @@ import Ciudades.*
 
 describe "Aca van los test que pide el enunciado"{
 	
-	var rollo = new Soldado(karl, 15, 3)
-	var floki = new Granjero(jarl, 2, 3, 9 )
+	var rollo = new Soldado(karl, 15, 0,3)
+	var floki = new Granjero(jarl, 2, 0, 3, 9 )
 	var expedicionOeste = new Expedicion()
 	var paris = new Capital(10,5)
 	var troya = new Aldea(26)
@@ -13,6 +13,7 @@ describe "Aca van los test que pide el enunciado"{
 	fixture{
 		expedicionOeste.agregarCiudad(paris)
 		expedicionOeste.agregarCiudad(troya)
+		
 	}
 	
 	test "Rollo intenta subir a la expedicion al Oeste y no lo deja "{
@@ -27,4 +28,11 @@ describe "Aca van los test que pide el enunciado"{
 	test "La expedicion vale la pena"{
 		assert.that(expedicionOeste.valeLaPena())
 	}
+	
+ 	test "Luego de realizar la expedicion a paris y troya, rollo queda con "{
+ 		expedicionOeste.agregarVikingo(rollo)
+		expedicionOeste.agregarVikingo(floki)
+		expedicionOeste.realizarExpedicion()
+ 		assert.equals(18,rollo.monedas())
+ 	}
 }

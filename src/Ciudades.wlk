@@ -14,6 +14,10 @@ class Capital{
 	method botin(expedicion){
 		return expedicion.cantidadDeVikingos()*factorRiqueza
 	}
+	
+	method serAtacada(expedicion){
+		cantDefensores -= expedicion.cantidadDeVikingos()
+	}
 }
 
 class Aldea{
@@ -25,11 +29,15 @@ class Aldea{
 	}
 	
 	method valeLaPena(expedicion){
-		return self.botin() >= 15
+		return self.botin(expedicion) >= 15
 	}
 	
-	method botin(){
+	method botin(expedicion){
 		return cantCrucifijos
+	}
+	
+	method serAtacada(expedicion){
+		cantCrucifijos = 0 
 	}
 }
 
